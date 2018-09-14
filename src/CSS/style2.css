@@ -1,0 +1,22 @@
+article {
+    width: 60%;
+    margin: 1% auto;
+}
+
+/* Bild i artikeln */
+#artpic {
+    margin: 0 5%;
+}
+
+/* Div i artikeln */
+#flex {
+    display: flex;
+}
+
+footer {
+    width: 20%;
+    margin: 0 auto;
+    padding: 2%;
+    background-color: white;
+    text-align: center;
+}
