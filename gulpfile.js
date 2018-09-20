@@ -3,6 +3,7 @@ var concat = require('gulp-concat');
 var concatcss = require('gulp-concat-css');
 var uglify = require('gulp-uglify');
 var uglifycss = require('gulp-uglifycss');
+var sass = require('gulp-sass');
 
 // Skicka html-filen till pub-mappen
 gulp.task("copyhtml", function(){
@@ -32,6 +33,17 @@ gulp.task('minicss', function() {
     .pipe(gulp.dest('pub'));
 });
 
+// Konvertera från SASS till CSS
+gulp.task('sass', function () {
+return gulp.src('src/scss/*.scss')
+.pipe(sass().on('error', sass.logError))
+.pipe(gulp.dest('pub/css'));
+});
+
+gulp.task('sass:watch', function () {
+gulp.watch('src/scss/*.scss', ['sass']);
+});
+
 // Task för livereload
 gulp.task("watcher", function(){
     gulp.watch("src/JavaScript/*.js", ["miniscript"]);
@@ -41,4 +53,4 @@ gulp.task("watcher", function(){
 });
 
 // Start av livereload
-gulp.task("default", ["copyhtml", "miniscript", "minicss", "sendpics", "watcher"]);
+gulp.task("default", ["copyhtml", "miniscript", "minicss", "sendpics", "watcher", 'sass:watch']);
